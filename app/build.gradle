@@ -22,7 +22,6 @@ android {
     }
     apply plugin: 'com.android.application'
 
-    android {
         applicationVariants.all { variant ->
             variant.outputs.all {
                 outputFileName = "${rootProject.name}-${variant.name}-" + {
@@ -35,7 +34,6 @@ android {
                 }() + ".apk"
             }
         }
-    }
 }
 
 dependencies {
