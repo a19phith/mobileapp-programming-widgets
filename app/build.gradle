@@ -21,19 +21,19 @@ android {
         }
     }
     apply plugin: 'com.android.application'
-
-        applicationVariants.all { variant ->
-            variant.outputs.all {
-                outputFileName = "${rootProject.name}-${variant.name}-" + {
-                    def stdout = new ByteArrayOutputStream()
-                    exec {
-                        commandLine 'git', 'describe', '--match=', '--always', '--dirty', '--abbrev=7'
-                        standardOutput = stdout
-                    }
-                    stdout.toString().trim()
-                }() + ".apk"
-            }
+    
+    applicationVariants.all { variant ->
+        variant.outputs.all {
+            outputFileName = "${rootProject.name}-${variant.name}-" + {
+                def stdout = new ByteArrayOutputStream()
+                exec {
+                    commandLine 'git', 'describe', '--match=', '--always', '--dirty', '--abbrev=7'
+                    standardOutput = stdout
+                }
+                stdout.toString().trim()
+            }() + ".apk"
         }
+    }
 }
 
 dependencies {
